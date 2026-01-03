@@ -129,18 +129,12 @@ const AboutUs = () => {
     const profiles = [
         {
             id: 1,
-            name: 'John Smith',
-            role: 'Managing Director',
+            name: 'Ad. RK Yadav ',
+            role: 'Founder & Director',
             img: directorImg,
-            desc: 'John has over 20 years of experience in financial consulting, leading organizations to achieve sustainable growth and client success.',
+            desc: 'Ad. RK Yadav has over 10 years of experience in financial consulting, leading organizations to achieve sustainable growth and client success.',
         },
-        {
-            id: 2,
-            name: 'Sarah Johnson',
-            role: 'Finance Manager',
-            img: managerImg,
-            desc: 'Sarah is passionate about building strategies that drive financial literacy and long-term investor confidence with innovative solutions.',
-        },
+        
     ]
 
     return (
@@ -204,7 +198,7 @@ const AboutUs = () => {
                     </h4>
                     <h1 className='text-4xl md:text-5xl font-bold leading-tight flex flex-wrap gap-2'>
                         Meet Our
-                        <span className='text-green-500'>Leadership Team</span>
+                        <span className='text-green-500'>Director</span>
                     </h1>
                 </div>
                 <div className="mt-6 md:mt-0">

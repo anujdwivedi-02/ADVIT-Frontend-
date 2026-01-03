@@ -39,19 +39,19 @@ const Home = () => {
     }, []);
 
     return (
-        <>
+        <div className="overflow-x-hidden">
             {/* Navbar fixed on top */}
             <Navbar />
 
             {/* Push content down by navbar height (h-20 = 80px) */}
-            <div className="bg-[#111C2E] min-h-screen pt-20">
+            <div className="bg-[#111C2E] min-h-screen pt-20 overflow-x-hidden">
                 {/* Fixed Stock Slider under Navbar */}
                 <div className="relative top-0 left-0 w-full z-40">
                     <SlideStock />
                 </div>
 
                 {/* Main Content */}
-                <div className="pt-10 px-6 mx-auto gap-6 w-full">
+                <div className="pt-10 px-6 mx-auto gap-6 w-full ">
                     {/* Portfolio Hero Section */}
                     <div className="flex flex-col md:flex-row items-center justify-between relative">
                         {/* Left Text */}
@@ -60,14 +60,16 @@ const Home = () => {
                                 Trust Point Wealth Partners
                             </p>
                             <h1 className="text-4xl md:text-6xl font-bold w-full leading-tight">
-                                <span className="text-green-600">Building</span> Wealth, One Step
-                                at a Time
+                                <span className="text-green-600">Your Trusted</span> Partner, in FInancial Succes.
+                                
                             </h1>
                             <p className="mt-4 text-[#E5D7C9] text-lg">
                                 Guiding you with expert insights and strategic solutions to
                                 achieve financial growth, stability, and long-term success.
                             </p>
-
+                            <div className="mt-4 text-[#E5D7C9] text-lg font-semibold">
+                                Why trust us with your finance? <span className="text-green-400">10 years</span> of proven expertise.
+                            </div>
                             <button
                                 onClick={() => navigate("/contacts")}
                                 className="mt-4 relative bg-green-500 overflow-hidden px-6 py-3 rounded-full font-semibold text-[#E5D7C9] border border-green-500 group"
@@ -77,11 +79,11 @@ const Home = () => {
                                 </span>
                                 <span className="absolute inset-y-0 left-0 w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full z-0"></span>
                             </button>
-                            <div className="mt-4 text-[#E5D7C9] flex items-center gap-2">
+                            {/* <div className="mt-4 text-[#E5D7C9] flex items-center gap-2">
                                 <h2 className="text-xl font-semibold">We are Working with </h2>
                                 <ArrowBigRight className="fill-[#E5D7C9]" size={16} />
                                 <Banks />
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* Right Image */}
@@ -115,8 +117,9 @@ const Home = () => {
             <div >
                 <Blog />
             </div>
-        </>
+        </div>
     );
 };
 
 export default Home;
+//Gaurav Pal

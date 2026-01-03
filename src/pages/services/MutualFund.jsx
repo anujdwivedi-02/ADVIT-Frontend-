@@ -20,7 +20,7 @@ const MutualFund = () => {
 
   return (
     <ServiceLayout
-      title="Mutual Funds"
+      title="SIP"
       subtitle="Diversified. Managed. Growth."
       description="Mutual Funds are professionally managed investment schemes that pool money from multiple investors 
       to invest in diversified asset classes. At Advit Capital Advisor, we offer a wide range of 

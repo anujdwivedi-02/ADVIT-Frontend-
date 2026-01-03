@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Register from './pages/Register';
+//import Register from './pages/Register';
 import Contacts from './pages/Contacts';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -23,9 +23,14 @@ import PerformanceTabs from './components/PerformenceTabs';
 import ScrollToTop from './components/ScrollToTop';
 import FundPerformance from './components/FundPerformence';
 import Profile from './pages/Profile';
+import AdminLogin from './pages/Admin Panel/AdminLogin';
 import RequireAuth from './components/RequireAuth';
 import { Toaster } from 'react-hot-toast';
 import Admin from './pages/Admin Panel/Admin';
+import Admin2 from './pages/Admin Panel/Admin2';
+
+import ActivityPage from "./pages/tools/ActivityPage";
+
 
 const App = () => {
   return (
@@ -41,11 +46,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
+        {/*<Route path="/signup" element={<Register />} />*/}
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/blogs" element={<Blogs />} />
         {/*Profile Page */}
         <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route path="/activitypage" element={<ActivityPage />}/>
 
         {/* About Us Section */}
         <Route path="/about-us" element={<AboutUs />} />
@@ -53,7 +59,7 @@ const App = () => {
         <Route path="/about-us/investor-meet" element={<InvestorMeet />} />
 
         {/* Services Section */}
-        <Route path="/services/mutual-fund" element={<MutualFund />} />
+        <Route path="/services/SIP" element={<MutualFund />} />
         <Route path="/services/fixed-deposit" element={<FixedDeposit />} />
         <Route path="/services/retirement-planning" element={<RetirementPlanning />} />
         <Route path="/services/fund-management" element={<FundManagement />} />
@@ -83,7 +89,10 @@ const App = () => {
         <Route path="/tools/financial-calculators/scheme-performance" element={<PerformanceTabs defaultTab="Scheme" />} />
 
         {/* Admin Panel */}
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} /> 
+        <Route path="/admin/dashboard" element={<Admin2 />} />
+       
       </Routes>
 
       {!(useLocation().pathname || "").startsWith('/admin') && <Footer />}

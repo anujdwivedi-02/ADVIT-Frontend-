@@ -28,7 +28,7 @@ const Choose = () => {
                                 Deep Industry Experience
                             </h4>
                             <p className="text-gray-600 text-sm leading-relaxed">
-                                30+ years of industry expertise, crafting winning strategies in Mutual Funds
+                                10+ years of industry expertise, crafting winning strategies in Mutual Funds
                                 and Commercial Insurance. Your financial security, our priority.
                             </p>
                         </div>

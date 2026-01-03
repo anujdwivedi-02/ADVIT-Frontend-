@@ -12,14 +12,14 @@ const contactData = [
   {
     id: 1,
     image: p1,
-    email: 'support@financegroup.com',
+    email: 'support@trustpoint.in',
     department: 'General Support',
     description: 'For general inquiries and support'
   },
   {
     id: 2,
     image: p2,
-    email: 'invest@financegroup.com',
+    email: 'info@trustpoint.in',
     department: 'Investment Team',
     description: 'Investment planning and portfolio management'
   },

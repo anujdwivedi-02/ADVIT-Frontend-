@@ -4,12 +4,12 @@ import gsap from "gsap";
 import finance2 from "../assets/finance2.jpg";
 import { AuthContext } from "../authContext/AuthProvider";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 const Register = () => {
   const formRef = useRef(null);
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
+
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -17,53 +17,67 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showTerms, setShowTerms] = useState(false);
+  const [agree, setAgree] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const tl = gsap.timeline();
     tl.fromTo(
       formRef.current,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1 }
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.8 }
     )
       .fromTo(
         leftPanelRef.current,
-        { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 1 },
-        "-=0.5"
+        { opacity: 0, x: -40 },
+        { opacity: 1, x: 0, duration: 0.8 },
+        "-=0.4"
       )
       .fromTo(
         rightPanelRef.current,
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 1 },
-        "-=0.5"
+        { opacity: 0, x: 40 },
+        { opacity: 1, x: 0, duration: 0.8 },
+        "-=0.4"
       );
   }, []);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!agree) {
+      toast.error("Please accept Terms & Privacy Policy");
+      return;
+    }
 
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
     }
-    axios.post('http://localhost:5000/api/auth/register', {fullName,email,password})
+
     setSubmitting(true);
+
     try {
       await register(email, fullName, password);
       toast.success("Registration successful!");
       navigate("/login");
     } catch (err) {
       console.error("Registration error:", err);
-      const message = err.message || "Registration failed";
+      const resp = err?.response?.data;
+      let message = "Registration failed";
+      if (resp) {
+        if (typeof resp === "string") message = resp;
+        else if (resp.error) message = resp.error;
+        else if (resp.message) message = resp.message;
+        else if (Array.isArray(resp.errors)) message = resp.errors.join(";");
+        else message = JSON.stringify(resp);
+      } else if (err?.message) {
+        message = err.message;
+      }
       toast.error(message);
     } finally {
       setSubmitting(false);
     }
-
- }
+  };
 
   return (
     <div className="flex h-screen bg-[#F9F0D3] text-gray-800">
@@ -82,7 +96,7 @@ const Register = () => {
         </p>
       </div>
 
-      {/* Right Panel (Form) */}
+      {/* Right Panel */}
       <div
         ref={rightPanelRef}
         className="flex flex-1 items-center justify-center bg-[#E5D7C9]"
@@ -103,9 +117,9 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                placeholder="Enter your full name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                placeholder="Enter your full name"
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-zinc-500 focus:outline-none"
               />
@@ -118,9 +132,9 @@ const Register = () => {
               </label>
               <input
                 type="email"
-                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-zinc-500 focus:outline-none"
               />
@@ -133,9 +147,9 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-zinc-500 focus:outline-none"
               />
@@ -148,22 +162,21 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                placeholder="Confirm your password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm your password"
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-zinc-500 focus:outline-none"
               />
             </div>
 
-            {/* Terms & Conditions */}
+            {/* Terms */}
             <div className="flex items-center mb-6">
               <input
                 type="checkbox"
+                checked={agree}
+                onChange={(e) => setAgree(e.target.checked)}
                 className="mr-2"
-                checked={showTerms}
-                onChange={(e) => setShowTerms(e.target.checked)}
-                required
               />
               <span className="text-sm">
                 I agree to the{" "}
@@ -176,21 +189,20 @@ const Register = () => {
               </span>
             </div>
 
-            {/* Register Button */}
+            {/* Button */}
             <button
               type="submit"
               disabled={submitting}
-              className={`w-full py-2 ${
+              className={`w-full py-2 rounded-lg text-white transition ${
                 submitting
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-green-600 hover:bg-green-700"
-              } text-white rounded-lg transition`}
+              }`}
             >
               {submitting ? "Registering..." : "Register"}
             </button>
           </form>
 
-          {/* Already have an account */}
           <p className="mt-6 text-center text-sm">
             Already have an account?{" "}
             <Link

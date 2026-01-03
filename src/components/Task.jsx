@@ -108,7 +108,7 @@ const Task = () => {
                 <div ref={cardRef} className="absolute bottom-20 -left-6 overflow-hidden text-gray-700 px-10 border border-l-0 border-t-0 py-4 rounded-xl shadow-xl group">
                     {/* Text content */}
                     <div className="relative z-10 transition-colors duration-500 group-hover:text-white">
-                        <h2 className="text-3xl md:text-4xl font-bold">30+ Years</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold">10+ Years</h2>
                         <p className="text-lg font-medium">of Experience in finance</p>
                     </div>
 

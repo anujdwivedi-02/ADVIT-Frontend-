@@ -20,7 +20,7 @@ const Navbar = () => {
         {
             name: "Services",
             dropdown: [
-                "Mutual Fund",
+                "SIP",
                 "Fixed Deposit",
                 "Fund Management",
                 "Retirement Planning",

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { AuthContext } from '../../authContext/AuthProvider'
+import AdminLogin from './AdminLogin'
 
 function Admin() {
   const [users, setUsers] = useState([])
@@ -13,7 +14,7 @@ function Admin() {
       setError(null)
       try {
         // adjust endpoint if your backend exposes a different route
-        const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+        const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001'
         const res = await axios.get(`${API_BASE}/users/`)
         setUsers(res.data || [])
       } catch (err) {
@@ -55,7 +56,7 @@ function Admin() {
   const saveEdit = async () => {
     if (!editingUser) return
     try {
-      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001'
       const payload = {
         username: editForm.username,
         email: editForm.email,
@@ -83,6 +84,8 @@ function Admin() {
   }
 
   return (
+    <>
+    <AdminLogin/>
     <div className="p-6 ">
       <h1 className="text-2xl font-bold mb-4">All Users</h1>
 
@@ -210,7 +213,7 @@ function Admin() {
             <button className="px-4 py-2 border rounded" onClick={() => setEditForm({ username: '', email: '', investment_type: '', amount: '', fd_amount: '', mutual_amount: '', retirement_amount: '', fixed_deposit_amount: '', fund_management_amount: '' })}>Reset</button>
             <button className="px-4 py-2 bg-green-600 text-white rounded" onClick={async () => {
               try {
-                const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+                const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001'
                 const payload = {
                   username: editForm.username,
                   email: editForm.email,
@@ -236,6 +239,7 @@ function Admin() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

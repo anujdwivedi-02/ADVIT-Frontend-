@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ServiceLayout = ({ 
   title, 
@@ -6,9 +7,12 @@ const ServiceLayout = ({
   description, 
   types = [], 
   benefits = [], 
-  ctaText, 
-  ctaAction 
+  ctaText
 }) => {
+  const navigate = useNavigate();
+  const handleContactScroll = () => {
+    navigate("/contacts#contact-us");
+  };
   return (
     <div className="px-6 md:px-16 py-12 mt-15 text-gray-800">
       {/* Header Section */}
@@ -71,14 +75,12 @@ const ServiceLayout = ({
           <h2 className="text-xl md:text-2xl font-bold text-green-700 mb-4">
             {ctaText}
           </h2>
-          {ctaAction && (
-            <button
-              onClick={ctaAction}
-              className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full shadow hover:bg-green-700 transition"
-            >
-              Explore Now
-            </button>
-          )}
+          <button
+            onClick={handleContactScroll}
+            className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full shadow hover:bg-green-700 transition"
+          >
+            Explore Now
+          </button>
         </div>
       )}
     </div>

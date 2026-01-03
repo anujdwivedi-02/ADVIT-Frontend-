@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+// axios removed: use AuthContext.login instead
 import gsap from 'gsap'
 import finance1 from '../assets/finance1.webp'
 import { AuthContext } from '../authContext/AuthProvider'
@@ -13,7 +13,7 @@ const Login = () => {
   const modalRef = useRef(null)
   const navigate = useNavigate()
 
-  const [email, setEmail] = useState('')
+  const [investerId, setInvesterId] = useState('')
   const [password, setPassword] = useState('')
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -53,26 +53,17 @@ const handleLogin = async (e) => {
   e.preventDefault();
   setLoading(true);
   setError("");
-
-   try {
-      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-      const res = await fetch(`${API_BASE}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
-      })
-      const data = await res.json()
-      if (res.ok && data.success) {
-        // store token (optional) and navigate to home
-        if (data.jwtToken) localStorage.setItem('token', data.jwtToken)
-        navigate('/')
-      } else {
-        setMessage(data.message || (data.errors && data.errors.join('; ')) || 'Login failed')
-      }
-    } catch (err) {
-      setMessage('Network error')
-    }
+  try {
+    await login(investerId, password); // Pass investerId instead of email
+    toast.success("Logged in");
+    navigate('/profile');
+  } catch (err) {
+    const message = err.message || err.error || 'Login failed';
+    setError(message);
+  } finally {
+    setLoading(false);
   }
+}
 
 
   return (
@@ -114,14 +105,14 @@ const handleLogin = async (e) => {
           <form onSubmit={handleLogin}>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-semibold mb-2">
-                Email Address
+                Invester ID
               </label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={investerId}
+                onChange={(e) => setInvesterId(e.target.value)}
                 className="w-full px-4 py-2 border border-zinc-400 rounded-lg  placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-zinc-500"
-                placeholder="Enter your email"
+                placeholder="Enter your Invester ID"
                 required
               />
             </div>

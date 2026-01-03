@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Car,
   Wallet,
@@ -25,14 +25,24 @@ const calculators = [
 
 const FinancialCalculators = () => {
   const [activeTab, setActiveTab] = useState("calculators"); // default tab
+  const navigate = useNavigate();
 
   return (
-    <div className="bg-[#E5D7C9]">
+    <div className="bg-[#E5D7C9] min-h-screen">
       {/* Header */}
-      <div className="w-full flex h-[200px] bg-[#E5D7C9] items-center justify-center">
+      <div className="w-full flex flex-col h-[200px] bg-[#E5D7C9] items-center justify-center relative">
         <h1 className="text-gray-600 mt-15 text-5xl md:text-6xl font-bold">
           Financial Tools
         </h1>
+        {/* Back Button */}
+        <button
+          onClick={() => navigate('/profile')}
+          className="absolute left-4 top-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow transition flex items-center"
+          style={{zIndex: 10}}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="mr-2" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          Back to Profile
+        </button>
       </div>
       {/* 🌟 Stylish Toggler */}
       <div className="flex justify-center mt-8">

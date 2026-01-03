@@ -13,8 +13,8 @@ const Facts = () => {
     const stats = [
         {
             id: 1,
-            icon: <Award className="w-8 h-8 text-green-600 relative z-10" />,
-            number: 30,
+            icon: <Award className="w-8 h-8 text-green-600 relative z-10" />, 
+            number: 10,
             suffix: "+",
             label: "Years of experience",
         },
@@ -103,7 +103,7 @@ const Facts = () => {
                     Key facts our <span className="text-green-600">expertise</span>
                 </h1>
                 <p className="text-lg text-gray-500 max-w-2xl">
-                    Our expertise is built on years of industry experience, proven
+                    Our expertise is built on 10 years of industry experience, proven
                     financial strategies and a commitment to client success.
                 </p>
 

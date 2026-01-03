@@ -90,19 +90,19 @@ const ContactUs = () => {
     {
       icon: <Phone size={24} />,
       title: "Phone",
-      info: "+91 98765 43210",
+      info: "+91 93256 67136",
       color: "bg-blue-500"
     },
     {
       icon: <Mail size={24} />,
       title: "Email",
-      info: "contact@financegroup.com",
+      info: "info@trustpoint.in",
       color: "bg-green-500"
     },
     {
       icon: <MapPin size={24} />,
       title: "Address",
-      info: "123 Finance Street, Mumbai, India",
+      info: "Ken Road, Kyotra, Banda (UP) - 210001",
       color: "bg-purple-500"
     },
     {
@@ -286,7 +286,7 @@ const ContactUs = () => {
               Visit Our Office
             </h2>
             <p className="text-[#E5D7C9] text-lg">
-              Find us at our main location in the heart of Mumbai's financial district
+              Find us at our main location in the heart UP's financial district
             </p>
           </div>
 
